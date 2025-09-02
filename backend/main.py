@@ -30,7 +30,7 @@ def make_qr_png_bytes(data:str)->bytes:
   buf = io.BytesIO()
   img.save(buf,format="PNG")
   buf.seek(0)
-  return buf.read
+  return buf.read()
 
 
 @app.get('/api/qr')
