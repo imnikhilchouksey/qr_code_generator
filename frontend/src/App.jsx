@@ -22,14 +22,14 @@ const App = () => {
   }
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center p-0'>
-        <nav className='flex flex-row fixed  font-bold text-2xl justify-center  w-full row items-center mb-3 top-0 p-2 '>QuickQR</nav>
+    <div className='min-h-screen flex flex-col items-center justify-center p-2'>
+        <nav className='h-[10dvh] flex flex-row fixed  font-bold text-2xl justify-center  w-full row items-center top-0 p-2 text-zinc-700 mb-4'>QuickQR</nav>
         <input
           type="text"
-          placeholder="Enter website or app link"
+          placeholder="Enter link here..."
           value={link}
           onChange={(e) => setLink(e.target.value)}
-          className="md:w-[80dvh] w-screen border rounded-lg px-4 py-2 m-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-black "
+          className="md:w-[80dvh] w-full border rounded-lg px-4 py-2 m-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-black "
         />
 
         <button
@@ -58,3 +58,5 @@ const App = () => {
 }
 
 export default App
+
+

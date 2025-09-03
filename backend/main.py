@@ -39,3 +39,5 @@ def qr_code(text: str = Query(..., description="The link or text to encode")):
   b64 = base64.b64encode(png_bytes).decode("utf-8")
   data_url = f"data:image/png;base64,{b64}"
   return JSONResponse({"text": text, "png": data_url})
+
+# python -m uvicorn main:app --reload --port 8000
