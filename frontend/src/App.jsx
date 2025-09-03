@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const API_BASE = "http://localhost:8000"
+const API_BASE = "https://qr-code-generator-1-ytq6.onrender.com"
 
 const App = () => {
 
