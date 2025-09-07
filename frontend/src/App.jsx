@@ -8,9 +8,13 @@ const App = () => {
   const [link, setLink] = useState("");
   const [qrSrc, setQrSrc] = useState("");
   const [currentText, setCurrentText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const generateQR = async () => {
-    if (!link.trim()) return;
+
+    setLoading(true);
+    try{
+      if (!link.trim()) return;
     const url = new URL(`${API_BASE}/api/qr`);
     url.searchParams.set("text", link);
 
@@ -19,6 +23,12 @@ const App = () => {
 
     setQrSrc(data.png);
     setCurrentText(data.text);
+    } catch(error){
+      console.error(error); 
+    } finally{
+      setLoading(false);
+    }
+    
   }
 
   return (
@@ -36,10 +46,36 @@ const App = () => {
         onClick={generateQR}
         className="md:w-[80dvh] w-full active:scale-95 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition"
       >
-        Generate QR
+        {loading ? "Generating..." : "Generate QR"}
       </button>
 
-      {qrSrc ? (
+      {loading && (
+        <div className="mt-4 flex items-center gap-2 text-blue-600">
+          <svg
+            className="animate-spin h-6 w-6 text-blue-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8z"
+            ></path>
+          </svg>
+          Generating Short URL...
+        </div>
+      )}
+
+      {qrSrc && (
         <div className="mt-8 text-center">
           <p className="text-gray-600 p-4 mb-2 break-words max-w-xs sm:max-w-md md:max-w-lg ">
             Generated for: <span className="font-medium break-words">{currentText}</span>
@@ -48,10 +84,6 @@ const App = () => {
             <img src={qrSrc} alt="QR Code" className="w-52 h-52" />
           </div>
         </div>
-      ) : (
-        <p className="text-gray-500 mt-6 text-center max-w-full ">
-          Enter a link and click "Generate QR"
-        </p>
       )}
       <footer className="h-[5dvh] flex items-center justify-center text-sm text-gray-600   fixed bottom-0 w-full bg-slate-900 ">
         © {new Date().getFullYear()} Developed by nikhil chouksey
