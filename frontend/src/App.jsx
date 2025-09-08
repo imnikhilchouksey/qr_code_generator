@@ -71,7 +71,7 @@ const App = () => {
               d="M4 12a8 8 0 018-8v8z"
             ></path>
           </svg>
-          Generating Short URL...
+          Generating QR...
         </div>
       )}
 

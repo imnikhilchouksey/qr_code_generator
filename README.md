@@ -33,7 +33,7 @@ git clone https://github.com/yourusername/qr_code_generator.git
 cd qr_code_generator
 
 ---
-👨‍💻 Author
+**👨‍💻 Author
 
 Nikhil Chouksey
 💡 Built with ❤️ using FastAPI & React
